@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anwesh Shrestha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HOME ── */
+    .home {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('https://cdn.mos.cms.futurecdn.net/wGgVghf9a4faZi2wrSemSM-970-80.jpg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+      animation: kenburns 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes kenburns {
+      from { transform: scale(1);    }
+      to   { transform: scale(1.15); }
+    }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 280px;
+      padding-top: 80px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      color: black;
+      margin: 0;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 8px rgba(255,255,255,0.3);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: black;
+      opacity: 0.5;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    .section-dark {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+    }
+
+    .about { background: #111111; }
+    .why   { background: #0d0d0d; }
+
+    .section-content {
+      max-width: 700px;
+      text-align: center;
+      width: 100%;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      color: white;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      margin: 0 0 48px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    h2.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-content p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: rgba(255,255,255,0.75);
+      line-height: 2;
+      letter-spacing: 1px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
+    }
+
+    .section-content p em {
+      color: white;
+      font-style: italic;
+    }
+
+    .section-content p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── TRANSITION STRIP ── */
+    .transition-strip {
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, #0a0a0a);
+      margin-top: -120px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      min-height: 100vh;
+      background-image: url('anwesh.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 0;
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 40px 20px;
+    }
+
+    .contact-content h2 { margin-bottom: 0; }
+
+    .contact-detail {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: white;
+      letter-spacing: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 4px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
+      text-align: center;
+      word-break: break-all;
+    }
+
+    .contact-detail.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media (max-width: 600px) {
+
+      /* shrink the name */
+      h1 {
+        font-size: 38px;
+        letter-spacing: 6px;
+      }
+
+      /* stack names vertically on mobile */
+      .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+        padding-top: 60px;
+      }
+
+      /* shrink section headings */
+      h2 {
+        font-size: 40px;
+        letter-spacing: 6px;
+        margin-bottom: 32px;
+      }
+
+      /* shrink body text slightly */
+      .section-content p {
+        font-size: 18px;
+        line-height: 1.9;
+      }
+
+      /* less side padding on small screens */
+      .section-dark {
+        padding: 60px 24px;
+      }
+
+      /* fix iOS Safari background-attachment: fixed bug */
+      .contact {
+        background-attachment: scroll;
+      }
+
+      /* shrink contact details */
+      .contact-detail {
+        font-size: 18px;
+        letter-spacing: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HOME -->
+  <section class="home">
+    <div class="bg"></div>
+    <div class="header">
+      <h1>Anwesh</h1>
+      <h1>Shrestha</h1>
+    </div>
+    <div class="scroll-hint">↓ &nbsp; scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section-dark about">
+    <div class="section-content">
+      <h2 id="about-title">About Me</h2>
+      <p id="about-text">If there was only one way I could describe myself — as if my life depended on it — I would call myself a <em>lifelong learner.</em> I like to learn about everything in this universe that exists. I would also like to know about what exists outside this universe, but alas, there seems to be no information about it. For now.</p>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section-dark why">
+    <div class="section-content">
+      <h2 id="why-title">Why This Exists</h2>
+      <p id="why-text">In the modern world, having a personal website is like having a citizenship. For me, I hope to use this space to share information about myself and my work that I think is worth sharing with the public — and especially with learners who are interested in what I'm building and exploring.</p>
+    </div>
+  </section>
+
+  <!-- GRADIENT TRANSITION -->
+  <div class="transition-strip"></div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="contact-content">
+      <h2 id="contact-title">Contact</h2>
+      <p class="contact-detail" id="contact-phone">📞 &nbsp;9700013257</p>
+      <p class="contact-detail" id="contact-email">✉️ &nbsp;anweshshrestha341@gmail.com</p>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(document.getElementById('about-title'));
+    observer.observe(document.getElementById('about-text'));
+    observer.observe(document.getElementById('why-title'));
+    observer.observe(document.getElementById('why-text'));
+    observer.observe(document.getElementById('contact-title'));
+    observer.observe(document.getElementById('contact-phone'));
+    observer.observe(document.getElementById('contact-email'));
+  </script>
+
+</body>
+</html>
